@@ -1,0 +1,54 @@
+<div class="card">
+    <form [formGroup]='employeeForm' (ngSubmit)='onSubmit()'>
+        <div class="card-header bg-primary text-white">Create Employee</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Full Name:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-sm" placeholder="Enter full name"
+                            formControlName="fullName">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Email:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-sm" placeholder="Enter email"
+                            formControlName="email">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>FormGroup</th>
+        <th>FormControl (Full Name)</th>
+    </tr>
+    <tr>
+        <td>
+            touched: {{employeeForm.touched}} <br>
+            dirty: {{employeeForm.dirty}} <br>
+            valid: {{employeeForm.valid}} <br>
+            form values: {{employeeForm.value | json}}
+        </td>
+        <td>
+            touched: {{ employeeForm.get('fullName').touched }} <br>
+            dirty: {{ employeeForm.get('fullName').dirty }} <br>
+            valid: {{employeeForm.get('fullName').valid}} <br>
+            Full Name value: {{employeeForm.get('fullName').value}}
+        </td>
+    </tr>
+</table>

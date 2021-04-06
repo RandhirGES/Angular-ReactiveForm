@@ -1,0 +1,136 @@
+<div class="card">
+    <form [formGroup]='employeeForm' (ngSubmit)='onSubmit()'>
+        <div class="card-header bg-primary text-white">Create Employee</div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Full Name:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-sm" placeholder="Enter full name"
+                            [ngClass]="{'is-invalid': formErrors.fullName}" formControlName="fullName"
+                            (blur)="logValidationErrors()">
+                        <span *ngIf="formErrors.fullName" class="text-danger" style="font-size: 12px;">
+                            {{formErrors.fullName}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Contact Preferences:
+                    </div>
+                    <div class="col-md-9">
+                        <div class="radio">
+                            <label class="radio-inline"><input type="radio" value="email"
+                                    formControlName="contactPreference">&nbsp;Email</label>
+                            <label class="radio-inline" style="padding-left: 20px;"><input type="radio" value="phone"
+                                    formControlName="contactPreference">&nbsp;Phone</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Email:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-sm" placeholder="Enter email"
+                            [ngClass]="{'is-invalid': formErrors.email}" formControlName="email"
+                            (blur)="logValidationErrors()">
+                        <span *ngIf="formErrors.email" class="text-danger" style="font-size: 12px;">
+                            {{formErrors.email}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        Phone:
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-sm" placeholder="Enter phone"
+                            [ngClass]="{'is-invalid': formErrors.phone}" formControlName="phone"
+                            (blur)="logValidationErrors()">
+                        <span *ngIf="formErrors.phone" class="text-danger" style="font-size: 12px;">
+                            {{formErrors.phone}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div formGroupName="skills" class="card card-body bg-light">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Skill:
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control form-control-sm" placeholder="Skill Name"
+                                [ngClass]="{'is-invalid': formErrors.skillName}" formControlName="skillName"
+                                (blur)="logValidationErrors()">
+                            <span *ngIf="formErrors.skillName" class="text-danger" style="font-size: 12px;">
+                                {{formErrors.skillName}}
+                            </span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" placeholder="Experience in year"
+                                [ngClass]="{'is-invalid': formErrors.experienceInYears}"
+                                formControlName="experienceInYears" (blur)="logValidationErrors()">
+                            <span *ngIf="formErrors.experienceInYears" class="text-danger" style="font-size: 12px;">
+                                {{formErrors.experienceInYears}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Proficiency:
+                        </div>
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <label class="radio-inline"><input type="radio" value="beginner"
+                                        formControlName="proficiency">&nbsp;Beginner</label>
+                                <label class="radio-inline" style="padding-left: 20px;"><input type="radio"
+                                        value="intermediate" formControlName="proficiency">&nbsp;Intermediate</label>
+                                <label class="radio-inline" style="padding-left: 20px;"><input type="radio"
+                                        value="advanced" formControlName="proficiency">&nbsp;Advanced</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+            <button type="button" class="btn btn-sm btn-primary" (click)="onLoadDataClick()"
+                style="margin-left: 10px;">Load data</button>
+        </div>
+    </form>
+</div>
+<br>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>FormGroup</th>
+        <th>FormControl (Full Name)</th>
+    </tr>
+    <tr>
+        <td>
+            touched: {{employeeForm.touched}} <br>
+            dirty: {{employeeForm.dirty}} <br>
+            valid: {{employeeForm.valid}} <br>
+            form values: {{employeeForm.value | json}}
+        </td>
+        <td>
+            touched: {{ employeeForm.get('fullName').touched }} <br>
+            dirty: {{ employeeForm.get('fullName').dirty }} <br>
+            valid: {{employeeForm.get('fullName').valid}} <br>
+            Full Name value: {{employeeForm.get('fullName').value}}
+        </td>
+    </tr>
+</table>
